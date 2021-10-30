@@ -89,8 +89,10 @@ class DanawaSeparator:
             if mo_name is None:
                 continue
             warranty = self.get_warranty(title=title_string, description=danawa.desc)
-            if not title_string:
+            if title_string and title_string != "":
                 pr_name = title_string
+            else:
+                pr_name = mo_name
             product = Product(
                 co_id=co_id,
                 pr_name=pr_name,
@@ -99,6 +101,7 @@ class DanawaSeparator:
                 desc=danawa.desc,
                 img_path=danawa.img_path
             )
+
             self.results.append(product)
 
         return self.results

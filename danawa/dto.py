@@ -9,6 +9,6 @@ class Product:
         self.co_id = co_id
         self.pr_name = pr_name
         self.mo_name = mo_name
-        self.warrant = warranty
+        self.warranty = warranty
         self.desc = desc
         self.img_path = img_path
