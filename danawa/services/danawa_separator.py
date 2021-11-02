@@ -9,7 +9,7 @@ from ..utils import len_max
 # 작성자: 양태영
 # 설명: 크롤러를 통해 받은 내용을 재분리하여 spring에 맞는 형식으로 보내기 위한 것.
 class DanawaSeparator:
-    kkma = Kkma()
+
 
     def __init__(self, danawa_crawled):
         # 크롤링을 통해 분리된 dict: json/danawa.json형식

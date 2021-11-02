@@ -12,3 +12,9 @@ class Product:
         self.warranty = warranty
         self.desc = desc
         self.img_path = img_path
+
+class Naver:
+    def __init__(self, title, company_name, img_path):
+        self.title = title
+        self.company_name = company_name
+        self.img_path = img_path
