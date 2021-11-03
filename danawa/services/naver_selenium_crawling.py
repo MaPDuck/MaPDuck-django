@@ -15,7 +15,7 @@ class NaverCrawler:
     def __init__(self):
         self.products = list()
 
-    def get_prooduct_list_Naver(self, Id, password):
+    def get_prooduct_list_Naver(self, id, password):
 
         # 크롬 드라이버 옵션
         options = webdriver.ChromeOptions()
@@ -35,7 +35,7 @@ class NaverCrawler:
         
         # 네이버 loginURL
         url = 'https://nid.naver.com/nidlogin.login?mode=form&url=https%3A%2F%2Fwww.naver.com'
-        id = Id
+        id = id
         pw = password
         
         # 드라이버 접속
