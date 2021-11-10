@@ -1,5 +1,3 @@
-from konlpy.tag import Kkma
-from konlpy.utils import pprint
 import re
 from ..models import Company
 from django.db.models import Q
@@ -60,13 +58,7 @@ class DanawaSeparator:
         candidates = title_string.split(" ")
         for candidate in candidates:
             # 회사 영어명이나 한글 명중 후보군이 있는지 검색
-            results = Company.objects.filter(co_eng_name=candidate.lower())
-            if len(results) != 0:
-                company = results.first()
-                candidates.pop(candidates.index(candidate))
-                rest_title = " ".join(candidates)
-                return company.pk, rest_title
-            results = Company.objects.filter(co_kor_name=candidate)
+            results = Company.objects.filter(co_name=candidate.lower())
             if len(results) != 0:
                 company = results.first()
                 candidates.pop(candidates.index(candidate))
