@@ -9,12 +9,10 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-from my_set import MY_DATABASES
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -26,7 +24,6 @@ SECRET_KEY = 'django-insecure-3gd!x%fzt^be(^$z36ci9l5&05m8za!--#%3!lgtg%toy+c=9$
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -74,12 +71,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mapduck_django.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = MY_DATABASES
-
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql', # mysqlclient librarly 설치
+        'NAME': 'MaPDuck',
+        'USER': 'mapduck',
+        'PASSWORD': 'mapduck2021', # mariaDB 설치 시 입력한 root 비밀번호 입력
+        'HOST': '13.209.87.152',
+        'PORT': '3306'
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -99,7 +103,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -112,7 +115,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
