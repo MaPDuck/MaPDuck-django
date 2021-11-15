@@ -4,10 +4,10 @@ from django.db.models import Q
 from ..dto import Product
 from ..utils import len_max
 
+
 # 작성자: 양태영
 # 설명: 크롤러를 통해 받은 내용을 재분리하여 spring에 맞는 형식으로 보내기 위한 것.
 class DanawaSeparator:
-
 
     def __init__(self, danawa_crawled):
         # 크롤링을 통해 분리된 dict: json/danawa.json형식
@@ -66,8 +66,28 @@ class DanawaSeparator:
                 return company.pk, rest_title
         return -1, title_string
 
-    def get_warranty(self, title, description):
-        return 0
+    def get_warranty(self, title: str, description: str):
+        warranty = 0
+        if description.find("보증") != -1 or description.find("AS") != -1:
+            pattern = "\d(개월|년)"
+            prog = re.compile(pattern)
+            results = prog.findall(title)
+            results += prog.findall(description)
+
+            if results:
+                for result in results:
+                    if result.find("개월") != -1:
+                        try:
+                            warranty = int(result[:result.find("개월")])
+                        except ValueError:
+                            pass
+                    if result.find("년") != -1:
+                        try:
+                            warranty = 12 * int(result[:result.find("년")])
+                        except ValueError:
+                            pass
+
+        return warranty
 
     # Spring에 보낼 필요한 요소를 포장하여 내보내는 함수.
     def get_products(self):
